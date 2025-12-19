@@ -1,0 +1,44 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the resource
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Helper function to validate file size (max 5MB)
+    function isValidSize() {
+      return request.resource.size < 5 * 1024 * 1024;
+    }
+    
+    // Helper function to validate PDF file type
+    function isPDF() {
+      return request.resource.contentType == 'application/pdf';
+    }
+    
+    // Resume storage rules
+    match /resumes/{userId}/{allPaths=**} {
+      // Only authenticated users can read their own resumes
+      allow read: if isOwner(userId);
+      
+      // Only authenticated users can upload PDF files under 5MB
+      allow create: if isOwner(userId) && isPDF() && isValidSize();
+      
+      // Allow updates (for enhanced versions)
+      allow update: if isOwner(userId) && isPDF() && isValidSize();
+      
+      // Allow deletion
+      allow delete: if isOwner(userId);
+    }
+    
+    // Deny all other access by default
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

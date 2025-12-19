@@ -1,0 +1,116 @@
+export const JOB_ROLES = [
+  'React Developer',
+  'Frontend Developer',
+  'Backend Developer',
+  'Full Stack Developer',
+  'MERN Developer',
+  'Blockchain Developer',
+  'DevOps Engineer',
+  'Cloud Engineer',
+  'Software Engineer',
+  'Senior Software Engineer',
+  'Tech Lead',
+  'Engineering Manager',
+  'Data Engineer',
+  'Machine Learning Engineer',
+  'Mobile Developer',
+  'iOS Developer',
+  'Android Developer',
+  'QA Engineer',
+  'Security Engineer',
+  'Solutions Architect',
+];
+
+export const SKILLS = [
+  // Frontend
+  'React',
+  'Vue.js',
+  'Angular',
+  'Next.js',
+  'TypeScript',
+  'JavaScript',
+  'HTML5',
+  'CSS3',
+  'Tailwind CSS',
+  'Redux',
+  'GraphQL',
+  
+  // Backend
+  'Node.js',
+  'Express.js',
+  'Python',
+  'Django',
+  'FastAPI',
+  'Java',
+  'Spring Boot',
+  'Go',
+  'Rust',
+  'C#',
+  '.NET',
+  
+  // Database
+  'MongoDB',
+  'PostgreSQL',
+  'MySQL',
+  'Redis',
+  'Elasticsearch',
+  'Firebase',
+  'DynamoDB',
+  
+  // Cloud & DevOps
+  'AWS',
+  'Azure',
+  'GCP',
+  'Docker',
+  'Kubernetes',
+  'CI/CD',
+  'Terraform',
+  'Jenkins',
+  'GitHub Actions',
+  
+  // Blockchain
+  'Solidity',
+  'Web3.js',
+  'Ethers.js',
+  'Smart Contracts',
+  'DeFi',
+  
+  // Other
+  'REST APIs',
+  'Microservices',
+  'System Design',
+  'Agile/Scrum',
+  'Git',
+  'Linux',
+];
+
+export const INDUSTRIES = [
+  'Technology',
+  'Finance & Banking',
+  'Healthcare',
+  'E-commerce',
+  'Education',
+  'Gaming',
+  'Media & Entertainment',
+  'Consulting',
+  'Startups',
+  'Enterprise',
+  'Government',
+  'Non-profit',
+];
+
+export const EXPERIENCE_LEVELS = [
+  { value: 0, label: 'Fresher (0 years)' },
+  { value: 1, label: '1 year' },
+  { value: 2, label: '2 years' },
+  { value: 3, label: '3 years' },
+  { value: 4, label: '4 years' },
+  { value: 5, label: '5 years' },
+  { value: 6, label: '6 years' },
+  { value: 7, label: '7 years' },
+  { value: 8, label: '8 years' },
+  { value: 9, label: '9 years' },
+  { value: 10, label: '10 years' },
+  { value: 15, label: '15+ years' },
+  { value: 20, label: '20+ years' },
+];
