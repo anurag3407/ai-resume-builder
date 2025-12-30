@@ -5,78 +5,90 @@ dotenv.config();
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
 // System prompt template for resume enhancement
 const getSystemPrompt = (jobRole, yearsOfExperience, skills, industry, customInstructions) => {
-  return `You are an expert resume writer specializing in tech industry resumes with a deep understanding of ATS (Applicant Tracking System) requirements and Harvard resume template formatting.
+  return `You are an expert resume writer. Create a professional resume in strict Harvard template format.
 
-Your task is to analyze and enhance the provided resume for a ${jobRole} position.
+Target Role: ${jobRole}
+Years of Experience: ${yearsOfExperience}
+Key Skills: ${skills.join(', ')}
+${industry ? `Industry: ${industry}` : ''}
+${customInstructions ? `Special Instructions: ${customInstructions}` : ''}
 
-Candidate Profile:
-- Target Role: ${jobRole}
-- Years of Experience: ${yearsOfExperience} years
-- Key Skills to Highlight: ${skills.join(', ')}
-${industry ? `- Industry Preference: ${industry}` : ''}
-${customInstructions ? `- Additional Instructions: ${customInstructions}` : ''}
+STRICT OUTPUT FORMAT (follow exactly):
 
-Enhancement Requirements:
+# [Full Name]
 
-1. **Structure (Harvard Template Format)**:
-   - Contact Information (Name, Email, Phone, LinkedIn, Portfolio)
-   - Summary/Objective (2-3 impactful sentences)
-   - Education (Degree, Institution, Graduation Date, GPA if >3.5)
-   - Experience (Reverse chronological order)
-   - Projects (if applicable)
-   - Skills & Technologies
-   - Leadership & Activities (if applicable)
-   - Certifications & Awards (if applicable)
+[email@domain.com](mailto:email@domain.com) | [Phone Number] | [LinkedIn](https://linkedin.com/in/username) | [GitHub](https://github.com/username) | [Portfolio](https://portfolio-url.com)
 
-2. **Content Optimization**:
-   - Use strong action verbs (Led, Developed, Implemented, Architected, Engineered, Optimized, Spearheaded, etc.)
-   - Quantify achievements with specific metrics (percentages, numbers, dollar amounts)
-   - Focus on impact and results, not just responsibilities
-   - Highlight relevant technical skills for ${jobRole}
-   - Include industry-specific keywords for ATS optimization
+## SUMMARY
 
-3. **Formatting Guidelines**:
-   - Keep bullet points concise (1-2 lines each)
-   - Use consistent formatting throughout
-   - Remove personal pronouns (I, my, we)
-   - Use present tense for current roles, past tense for previous roles
-   - Prioritize most relevant experience and skills
+[2-3 sentence professional summary highlighting key achievements and expertise for ${jobRole} role]
 
-4. **ATS Optimization**:
-   - Include relevant keywords naturally throughout
-   - Use standard section headings
-   - Avoid graphics, tables, or special characters
-   - Ensure clean, parseable text
+## EDUCATION
 
-5. **Critical Rules**:
-   - NEVER fabricate information or add false claims
-   - ONLY enhance and restructure existing information
-   - Maintain factual accuracy at all times
-   - If information seems incomplete, improve presentation of what's available
+**[Degree Name]** | [University Name] | [Location] | [Graduation Date]
+- GPA: [X.XX] (only if > 3.5)
+- Relevant coursework or honors
 
-Return the enhanced resume in clean, well-formatted markdown with clear section headers using ## for main sections.`;
+## EXPERIENCE
+
+**[Job Title]** | [Company Name] | [Location] | [Start Date] - [End Date]
+- [Achievement with quantified impact using action verbs]
+- [Another achievement with metrics]
+
+## PROJECTS
+
+**[Project Name]** | [Technologies Used] | [Date]
+- [Description of project with impact/results]
+- [Link if applicable: [Project Link](https://url.com)]
+
+## SKILLS
+
+**Languages:** [List]
+**Frameworks:** [List]
+**Tools:** [List]
+**Other:** [List]
+
+CRITICAL FORMATTING RULES:
+1. ALL URLs must be clickable markdown links: [Display Text](https://full-url.com)
+2. Email must be: [email@domain.com](mailto:email@domain.com)
+3. LinkedIn must be: [LinkedIn](https://linkedin.com/in/username)
+4. GitHub must be: [GitHub](https://github.com/username)
+5. Phone numbers are plain text with country code
+6. Use ** for bold text (job titles, degrees, project names)
+7. Use - for bullet points
+8. Each section header uses ## 
+9. Name uses # (single hash)
+10. Contact info goes on ONE line right after name, separated by |
+
+OUTPUT RULES:
+- Return ONLY the resume markdown, nothing else
+- NO preamble like "Here is the resume"
+- NO notes or commentary
+- NO explanations
+- Start with # [Name]
+- End with the last skill or section`;
 };
 
 // Function to enhance resume using Google Gemini
 export const enhanceResume = async (resumeText, preferences) => {
-  const { 
-    jobRole, 
-    yearsOfExperience, 
-    skills = [], 
-    industry = '', 
-    customInstructions = '' 
+  const {
+    jobRole,
+    yearsOfExperience,
+    skills = [],
+    industry = '',
+    customInstructions = ''
   } = preferences;
 
   try {
     const systemPrompt = getSystemPrompt(
-      jobRole, 
-      yearsOfExperience, 
-      skills, 
-      industry, 
+      jobRole,
+      yearsOfExperience,
+      skills,
+      industry,
       customInstructions
     );
 
@@ -85,7 +97,7 @@ export const enhanceResume = async (resumeText, preferences) => {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    
+
     return {
       success: true,
       enhancedResume: text,
@@ -112,7 +124,7 @@ ${resumeText}`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    
+
     return {
       success: true,
       summary: text
@@ -134,7 +146,7 @@ ${resumeText}`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    
+
     return {
       success: true,
       suggestions: text

@@ -74,7 +74,11 @@ export function PreferencesPage() {
       toast.success('Resume enhanced successfully!', { id: 'enhance' });
       navigate('/editor');
     } catch (err) {
-      toast.error(err.message || 'Failed to enhance resume', { id: 'enhance' });
+      // If AI enhancement fails, use original text and still navigate to editor
+      toast.error('AI enhancement failed. Using original text.', { id: 'enhance' });
+      // Set enhanced text to extracted text so editor has content
+      useResumeStore.getState().setEnhancedText(extractedText);
+      navigate('/editor');
     }
   };
 
@@ -167,7 +171,7 @@ export function PreferencesPage() {
                 <Star className="h-5 w-5 text-blue-600" />
                 <h3 className="font-medium text-gray-900">Key Skills to Highlight</h3>
               </div>
-              
+
               {/* Selected Skills */}
               {selectedSkills.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -212,7 +216,7 @@ export function PreferencesPage() {
                   </div>
                 )}
               </div>
-              
+
               {/* Quick Add Popular Skills */}
               <div className="flex flex-wrap gap-2 mt-2">
                 {SKILLS.slice(0, 8).map((skill) => (

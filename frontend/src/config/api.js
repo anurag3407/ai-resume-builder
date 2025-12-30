@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:9000/api';
 
 class ApiClient {
   constructor() {
@@ -16,7 +16,7 @@ class ApiClient {
 
   async request(endpoint, options = {}) {
     const token = await this.getAuthToken();
-    
+
     const headers = {
       ...options.headers,
     };
