@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Dark Theme Variables */
+:root {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #111111;
+  --bg-elevated: #1a1a1a;
+  --border-subtle: #222222;
+  --border-default: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a1;
+  --text-tertiary: #737373;
+  --accent-primary: #0070f3;
+  --accent-hover: #0761d1;
+  --success: #00d924;
+  --error: #ff0000;
+  --warning: #f5a623;
+}
+
 /* Custom styles */
 * {
   margin: 0;
@@ -9,12 +27,15 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-primary);
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* Resume preview styles */
@@ -23,8 +44,9 @@ body {
   font-weight: 700;
   text-align: center;
   margin-bottom: 0.25rem;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 2px solid #e5e5e5;
   padding-bottom: 0.5rem;
+  color: #1a1a1a;
 }
 
 .resume-content h2 {
@@ -32,10 +54,11 @@ body {
   font-weight: 700;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #999;
   padding-bottom: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  color: #1a1a1a;
 }
 
 .resume-content h3 {
@@ -43,11 +66,13 @@ body {
   font-weight: 600;
   margin-top: 0.75rem;
   margin-bottom: 0.25rem;
+  color: #1a1a1a;
 }
 
 .resume-content p {
   margin: 0.25rem 0;
   line-height: 1.5;
+  color: #1a1a1a;
 }
 
 .resume-content ul {
@@ -61,26 +86,27 @@ body {
 .resume-content li {
   margin-bottom: 0.125rem;
   line-height: 1.4;
+  color: #1a1a1a;
 }
 
-/* Custom scrollbar */
+/* Dark theme scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-secondary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #333333;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+  background: #444444;
 }
 
 /* Print styles for PDF */

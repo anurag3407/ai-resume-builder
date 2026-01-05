@@ -32,14 +32,14 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-black/95 backdrop-blur-sm border-b border-white/10 sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link to={user ? '/dashboard' : '/'} className="flex items-center gap-2">
-              <FileText className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">
+              <FileText className="h-7 w-7 text-blue-400" />
+              <span className="text-xl font-bold text-white">
                 AI Resume Builder
               </span>
             </Link>
@@ -47,15 +47,15 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           {user && (
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-2">
               {navLinks.map(({ path, label, icon: Icon }) => (
                 <Link
                   key={path}
                   to={path}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                     isActive(path)
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-blue-500/10 text-blue-400'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -71,7 +71,7 @@ export function Navbar() {
               <>
                 <div className="hidden md:flex items-center gap-3">
                   <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-white">
                       {user.displayName || user.email?.split('@')[0]}
                     </p>
                     <p className="text-xs text-gray-500">{user.email}</p>
@@ -80,11 +80,11 @@ export function Navbar() {
                     <img
                       src={user.photoURL}
                       alt="Profile"
-                      className="h-10 w-10 rounded-full"
+                      className="h-9 w-9 rounded-full ring-2 ring-white/10"
                     />
                   ) : (
-                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                      <span className="text-blue-600 font-medium">
+                    <div className="h-9 w-9 rounded-full bg-blue-500/10 flex items-center justify-center ring-2 ring-white/10">
+                      <span className="text-blue-400 font-medium text-sm">
                         {(user.displayName || user.email)?.[0]?.toUpperCase()}
                       </span>
                     </div>
@@ -94,7 +94,7 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   onClick={handleLogout}
-                  className="hidden md:flex"
+                  className="hidden md:flex text-gray-400 hover:text-white hover:bg-white/5"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
@@ -103,7 +103,7 @@ export function Navbar() {
                 {/* Mobile menu button */}
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+                  className="md:hidden p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white"
                 >
                   {mobileMenuOpen ? (
                     <X className="h-6 w-6" />
@@ -115,10 +115,10 @@ export function Navbar() {
             ) : (
               <div className="flex items-center gap-3">
                 <Link to="/login">
-                  <Button variant="ghost">Login</Button>
+                  <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5">Login</Button>
                 </Link>
                 <Link to="/signup">
-                  <Button>Get Started</Button>
+                  <Button className="bg-blue-600 text-white hover:bg-blue-700">Get Started</Button>
                 </Link>
               </div>
             )}
@@ -128,7 +128,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {user && mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <div className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-sm">
           <div className="px-4 py-4 space-y-2">
             {navLinks.map(({ path, label, icon: Icon }) => (
               <Link
@@ -137,8 +137,8 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive(path)
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-600 hover:bg-gray-50'
+                    ? 'bg-blue-500/10 text-blue-400'
+                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 <Icon className="h-5 w-5" />
@@ -147,7 +147,7 @@ export function Navbar() {
             ))}
             <button
               onClick={handleLogout}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 w-full"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 w-full"
             >
               <LogOut className="h-5 w-5" />
               Logout
