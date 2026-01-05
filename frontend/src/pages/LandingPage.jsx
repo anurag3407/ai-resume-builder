@@ -76,29 +76,31 @@ const steps = [
 
 export function LandingPage() {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <section className="relative bg-black">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+        
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-32 lg:py-40">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6">
-              <Sparkles className="h-4 w-4 text-yellow-400" />
-              <span className="text-sm font-medium">Powered by Google Gemini AI</span>
+            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-5 py-2 mb-8">
+              <Sparkles className="h-4 w-4 text-blue-400" />
+              <span className="text-sm font-medium text-gray-300">Powered by Google Gemini AI</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight">
               Build Your Perfect Resume
               <br />
-              <span className="text-blue-200">in Minutes with AI</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">in Minutes with AI</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
               Transform your resume into an ATS-optimized, professionally formatted
               document tailored to your dream job. Get hired faster with AI-powered
               resume enhancement.
@@ -106,44 +108,41 @@ export function LandingPage() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/signup">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8">
+                <Button 
+                  size="lg" 
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-10 py-6 text-base font-medium rounded-lg transition-all duration-200 shadow-lg shadow-blue-500/50 hover:shadow-xl hover:shadow-blue-500/60"
+                >
                   Get Started Free
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/login">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/20 text-white hover:bg-white/5 bg-transparent px-10 py-6 text-base font-medium rounded-lg transition-all duration-200"
+                >
                   Sign In
                 </Button>
               </Link>
             </div>
           </motion.div>
         </div>
-        
-        {/* Wave decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 50L48 45.7C96 41.3 192 32.7 288 35.8C384 39 480 54 576 60.2C672 66.3 768 63.7 864 56.5C960 49.3 1056 37.7 1152 35.8C1248 34 1344 42 1392 46L1440 50V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V50Z"
-              fill="#F9FAFB"
-            />
-          </svg>
-        </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-32 bg-black border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Everything You Need to Land Your Dream Job
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Our AI-powered platform provides all the tools you need to create
               a standout resume that gets results.
             </p>
@@ -157,15 +156,15 @@ export function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/10 group"
               >
-                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-blue-600" />
+                <div className="h-12 w-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+                  <feature.icon className="h-6 w-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -173,18 +172,18 @@ export function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-32 bg-gradient-to-b from-black to-black border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               How It Works
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Four simple steps to transform your resume and accelerate your job search.
             </p>
           </motion.div>
@@ -199,13 +198,13 @@ export function LandingPage() {
                 transition={{ delay: index * 0.15 }}
                 className="text-center"
               >
-                <div className="text-5xl font-bold text-blue-600/20 mb-4">
+                <div className="text-6xl font-bold text-blue-500/20 mb-6">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {step.title}
                 </h3>
-                <p className="text-gray-600">{step.description}</p>
+                <p className="text-gray-400 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -213,34 +212,37 @@ export function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-blue-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-32 bg-gradient-to-b from-black via-blue-950/20 to-black border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Ready to Transform Your Resume?
             </h2>
-            <p className="text-lg text-blue-100 mb-8">
+            <p className="text-lg text-gray-400 mb-12">
               Join thousands of job seekers who have improved their resumes with AI.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Link to="/signup">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8">
+                <Button 
+                  size="lg" 
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-10 py-6 text-base font-medium rounded-lg transition-all duration-200 shadow-lg shadow-blue-500/50"
+                >
                   Start Building Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-8 text-blue-100">
+            <div className="flex items-center justify-center gap-12 text-gray-400">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5" />
+                <CheckCircle className="h-5 w-5 text-blue-400" />
                 <span>Free to start</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5" />
+                <CheckCircle className="h-5 w-5 text-blue-400" />
                 <span>No credit card required</span>
               </div>
             </div>
