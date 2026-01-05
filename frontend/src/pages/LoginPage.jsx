@@ -50,29 +50,29 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center">
-              <FileText className="h-7 w-7 text-blue-600" />
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 bg-black">
+      <Card className="w-full max-w-md bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+        <CardHeader className="text-center border-b border-white/10 pb-8 pt-8">
+          <div className="flex justify-center mb-6">
+            <div className="h-16 w-16 bg-blue-500/10 rounded-full flex items-center justify-center">
+              <FileText className="h-8 w-8 text-blue-400" />
             </div>
           </div>
-          <CardTitle className="text-2xl">Welcome Back</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-3xl font-bold mb-2">Welcome Back</CardTitle>
+          <CardDescription className="text-gray-400">
             Sign in to continue building your resume
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 p-8">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-600">
+            <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-3 text-red-400">
               <AlertCircle className="h-5 w-5 flex-shrink-0" />
               <p className="text-sm">{error}</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <Input
                 type="email"
@@ -107,7 +107,7 @@ export function LoginPage() {
 
             <Button
               type="submit"
-              className="w-full"
+              className="w-full bg-blue-600 text-white hover:bg-blue-700 py-3 rounded-lg font-medium"
               loading={loading}
               disabled={loading || isGoogleLoading}
             >
@@ -118,17 +118,17 @@ export function LoginPage() {
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-white/10" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              <span className="px-3 bg-black text-gray-500">Or continue with</span>
             </div>
           </div>
 
           <Button
             type="button"
             variant="outline"
-            className="w-full"
+            className="w-full border-white/20 text-white hover:bg-white/5 bg-transparent py-3 rounded-lg font-medium"
             onClick={handleGoogleSignIn}
             loading={isGoogleLoading}
             disabled={loading || isGoogleLoading}
@@ -154,9 +154,9 @@ export function LoginPage() {
             Sign In with Google
           </Button>
 
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-sm text-gray-400">
             Don&apos;t have an account?{' '}
-            <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+            <Link to="/signup" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
               Sign up
             </Link>
           </p>
